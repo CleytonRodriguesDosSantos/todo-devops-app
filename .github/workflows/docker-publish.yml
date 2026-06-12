@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build Push and Deploy Azure
 
 on:
   push:
@@ -20,9 +20,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push
+      - name: Build and Push Docker Hub
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/todo-devops-app:latest
+
+      - name: Deploy Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: todo-cleyton-east2
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/todo-devops-app:latest

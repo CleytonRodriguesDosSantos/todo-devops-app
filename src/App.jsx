@@ -11,7 +11,7 @@ export default function App() {
     const novaTarefa = {
       id: Date.now(),
       texto: texto,
-      feita: false
+      feita: false,
     };
 
     setTarefas([...tarefas, novaTarefa]);
@@ -24,6 +24,7 @@ export default function App() {
         ? { ...tarefa, feita: !tarefa.feita }
         : tarefa
     );
+
     setTarefas(novaLista);
   };
 
@@ -34,7 +35,7 @@ export default function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>To-Do DevOps App</h1>
+      <h1>To-Do DevOps App - Deploy Automático Azure</h1>
 
       <input
         type="text"
@@ -54,10 +55,12 @@ export default function App() {
               onChange={() => toggleFeita(tarefa.id)}
             />
 
-            <span style={{
-              textDecoration: tarefa.feita ? "line-through" : "none",
-              marginLeft: "8px"
-            }}>
+            <span
+              style={{
+                textDecoration: tarefa.feita ? "line-through" : "none",
+                marginLeft: "8px",
+              }}
+            >
               {tarefa.texto}
             </span>
 

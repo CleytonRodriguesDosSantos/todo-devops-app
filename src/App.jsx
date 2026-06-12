@@ -35,7 +35,7 @@ export default function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>To-Do DevOps App - Deploy Automático Azure</h1>
+      <h1>To-Do DevOps App</h1>
 
       <input
         type="text"
